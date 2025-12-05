@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance Extractor Pro</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="bi bi-file-earmark-spreadsheet me-2"></i>BalanceConverter
+            </a>
+            <span class="navbar-text text-white-50 fs-6">
+                Procesamiento local y seguro
+            </span>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold text-dark">Convierte tus Balances PDF</h2>
+                    <p class="text-muted">Extrae cuentas, débitos y créditos a Excel manteniendo la lógica contable.</p>
+                </div>
+
+                <div class="card shadow border-0 mb-4" id="uploadCard">
+                    <div class="card-body p-4 text-center">
+                        <div id="dropZone" class="upload-area p-5 border border-2 border-dashed rounded-3 bg-light">
+                            <i class="bi bi-cloud-arrow-up text-primary display-4 mb-3"></i>
+                            <h5 class="fw-bold">Arrastra tu PDF aquí</h5>
+                            <p class="text-muted small">o haz clic para buscarlo en tu carpeta</p>
+                            <input type="file" id="fileInput" accept=".pdf" hidden>
+                            <button class="btn btn-primary px-4 mt-2" onclick="document.getElementById('fileInput').click()">
+                                Seleccionar Archivo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="statusCard" class="card shadow border-0 mb-4 d-none">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="spinner-border text-primary me-3" role="status" id="loadingSpinner"></div>
+                            <h5 class="card-title mb-0 fw-bold" id="statusTitle">Procesando...</h5>
+                        </div>
+                        <div id="logArea" class="log-box bg-dark text-success p-3 rounded font-monospace small" style="max-height: 200px; overflow-y: auto;">
+                            > Iniciando sistema...<br>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="resultCard" class="card shadow border-0 border-start border-success border-5 d-none">
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <i class="bi bi-check-circle-fill text-success display-1 mb-3"></i>
+                            <h3 class="fw-bold text-success">¡Conversión Exitosa!</h3>
+                            <p class="text-muted">Tu archivo Excel se ha descargado automáticamente.</p>
+                            <button class="btn btn-outline-dark mt-2" onclick="location.reload()">
+                                <i class="bi bi-arrow-counterclockwise me-2"></i>Procesar otro archivo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5 text-muted small">
+                    <p>Funciona sin internet. Los datos nunca salen de tu navegador.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
