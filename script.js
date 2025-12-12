@@ -12,8 +12,19 @@ const statusTitle = document.getElementById('statusTitle');
 const loadingSpinner = document.getElementById('loadingSpinner');
 
 // --- Eventos de Drag & Drop ---
-dropZone.addEventListener('click', () => fileInput.click());
+// --- Eventos de Drag & Drop ---
 
+// 1. MODIFICACIÓN AQUÍ: Controlamos el clic para evitar conflictos
+dropZone.addEventListener('click', (e) => {
+    // Si el clic vino del botón (o del icono dentro del botón), 
+    // detenemos esta función porque el botón ya tiene su propio 'onclick' en el HTML.
+    if (e.target.closest('button')) {
+        return;
+    }
+    fileInput.click();
+});
+
+// El resto de tus eventos se quedan igual...
 dropZone.addEventListener('dragover', (e) => {
     e.preventDefault();
     dropZone.classList.add('drag-over');
